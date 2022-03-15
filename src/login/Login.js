@@ -8,10 +8,13 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
+      hasLoginFailed: false,
+      showSuccessMessage: false,
     };
 
     // binding the function(event) to state...
     this.handleChange = this.handleChange.bind(this);
+    this.loginUser = this.loginUser.bind(this);
 
     // So whenever we made changes to username & password input fields the state gets updated
     // and when state gets updated the changes reflects back in element : This is like Two way data binding
@@ -19,14 +22,30 @@ class Login extends Component {
 
   // will work as two way data binding
   handleChange(event) {
-    console.log(event.target.name);
     // update the state of form fields
     this.setState({ [event.target.name]: event.target.value });
+  }
+
+  loginUser() {
+    if (
+      this.state.username === "username" &&
+      this.state.password === "password"
+    ) {
+      this.setState({ hasLoginFailed: false });
+      this.setState({ showSuccessMessage: true });
+    } else {
+      this.setState({ hasLoginFailed: true });
+      this.setState({ showSuccessMessage: false });
+    }
   }
 
   render() {
     return (
       <div>
+        <ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed} />
+        <ShowLoginSuccessMessage
+          showSuccessMessage={this.state.showSuccessMessage}
+        />
         Username:
         <input
           type="text"
@@ -43,10 +62,24 @@ class Login extends Component {
           onChange={this.handleChange}
         />
         <br />
-        <button>LogIn</button>
+        <button onClick={this.loginUser}>LogIn</button>
       </div>
     );
   }
+}
+
+function ShowLoginSuccessMessage(props) {
+  if (props.showSuccessMessage) {
+    return <div>Login Successfull</div>;
+  }
+  return null;
+}
+
+function ShowInvalidCredentials(props) {
+  if (props.hasLoginFailed) {
+    return <div>Invalid Credentials</div>;
+  }
+  return null;
 }
 
 export default Login;
