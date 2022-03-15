@@ -11,25 +11,17 @@ class Login extends Component {
     };
 
     // binding the function(event) to state...
-    this.handleUsernameChange = this.handleUsernameChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
 
     // So whenever we made changes to username & password input fields the state gets updated
     // and when state gets updated the changes reflects back in element : This is like Two way data binding
   }
 
   // will work as two way data binding
-  handleUsernameChange(event) {
-    console.log(event.target.value);
-    // update the state of username
-    this.setState({ username: event.target.value });
-  }
-
-  // will work as two way data binding
-  handlePasswordChange(event) {
-    console.log(event.target.value);
-    // update the state of password
-    this.setState({ password: event.target.value });
+  handleChange(event) {
+    console.log(event.target.name);
+    // update the state of form fields
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   render() {
@@ -40,7 +32,7 @@ class Login extends Component {
           type="text"
           name="username"
           value={this.state.username}
-          onChange={this.handleUsernameChange}
+          onChange={this.handleChange}
         />
         <br />
         Password:
@@ -48,7 +40,7 @@ class Login extends Component {
           type="password"
           name="password"
           value={this.state.password}
-          onChange={this.handlePasswordChange}
+          onChange={this.handleChange}
         />
         <br />
         <button>LogIn</button>
