@@ -42,10 +42,8 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <ShowInvalidCredentials hasLoginFailed={this.state.hasLoginFailed} />
-        <ShowLoginSuccessMessage
-          showSuccessMessage={this.state.showSuccessMessage}
-        />
+        {this.state.hasLoginFailed && <div>Invalid Credentials</div>}
+        {this.state.showSuccessMessage && <div>Login Successfull</div>}
         Username:
         <input
           type="text"
@@ -66,20 +64,6 @@ class Login extends Component {
       </div>
     );
   }
-}
-
-function ShowLoginSuccessMessage(props) {
-  if (props.showSuccessMessage) {
-    return <div>Login Successfull</div>;
-  }
-  return null;
-}
-
-function ShowInvalidCredentials(props) {
-  if (props.hasLoginFailed) {
-    return <div>Invalid Credentials</div>;
-  }
-  return null;
 }
 
 export default Login;
