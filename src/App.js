@@ -4,9 +4,11 @@ import Home from "./home/Home";
 import Login from "./login/Login";
 import Error from "./error/Error";
 import withNavigation from "./login/withNavigation";
+import withParams from "./login/withParams";
 
 function App() {
   const LoginComponentWithNavigation = withNavigation(Login);
+  const HomeComponentWithParams = withParams(Home);
 
   return (
     <div className="TodoApp">
@@ -14,7 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginComponentWithNavigation />} />
           <Route path="/login" element={<LoginComponentWithNavigation />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/home/:name" element={<HomeComponentWithParams />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </Router>

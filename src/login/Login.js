@@ -28,7 +28,7 @@ class Login extends Component {
 
   loginUser() {
     if (this.state.username === "sawan52" && this.state.password === "sawan52") {
-      this.props.navigate("/home", { replace: true });
+      this.props.navigate(`/home/${this.state.username}`, { replace: true });
       this.setState({ hasLoginFailed: false });
       this.setState({ showSuccessMessage: true });
     } else {
