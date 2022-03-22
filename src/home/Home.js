@@ -6,7 +6,7 @@ function Home(props) {
     <div>
       Welcome to HOME Page {props.params.name}
       <p>
-        You can manage your TODOS <Link to="/todos">here...</Link>
+        You can manage your TODOS <Link to="/todos">here</Link>...
       </p>
     </div>
   );
