@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import AuthenticationService from "../service/AuthenticationService.js";
 
 class Login extends Component {
   // define the initial state in constructor for username & password
@@ -28,6 +29,7 @@ class Login extends Component {
 
   loginUser() {
     if (this.state.username === "sawan52" && this.state.password === "sawan52") {
+      AuthenticationService.successfulLogin(this.state.username, this.state.password);
       this.props.navigate(`/home/${this.state.username}`, { replace: true });
       this.setState({ hasLoginFailed: false });
       this.setState({ showSuccessMessage: true });
