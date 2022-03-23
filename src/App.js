@@ -13,11 +13,13 @@ import withParams from "./login/withParams";
 function App() {
   const LoginComponentWithNavigation = withNavigation(Login);
   const HomeComponentWithParams = withParams(Home);
+  // refreshing header on navigating to another component
+  const HeaderComponentWithNavigation = withNavigation(Header);
 
   return (
     <div className="TodoApp">
       <Router>
-        <Header />
+        <HeaderComponentWithNavigation />
         <Routes>
           <Route path="/" element={<LoginComponentWithNavigation />} />
           <Route path="/login" element={<LoginComponentWithNavigation />} />
