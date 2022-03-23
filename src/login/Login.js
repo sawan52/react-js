@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import AuthenticationService from "../service/AuthenticationService.js";
+import AuthenticationService from "../service/AuthenticationService";
 
 class Login extends Component {
   // define the initial state in constructor for username & password

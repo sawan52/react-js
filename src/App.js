@@ -9,6 +9,7 @@ import Header from "./nav/Header";
 import Footer from "./nav/Footer";
 import withNavigation from "./login/withNavigation";
 import withParams from "./login/withParams";
+import AuthenticatedRoute from "./login/AuthenticatedRoute";
 
 function App() {
   const LoginComponentWithNavigation = withNavigation(Login);
@@ -23,9 +24,30 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginComponentWithNavigation />} />
           <Route path="/login" element={<LoginComponentWithNavigation />} />
-          <Route path="/home/:name" element={<HomeComponentWithParams />} />
-          <Route path="/todos" element={<Todos />} />
-          <Route path="/logout" element={<Logout />} />
+          <Route
+            path="/home/:name"
+            element={
+              <AuthenticatedRoute>
+                <HomeComponentWithParams />
+              </AuthenticatedRoute>
+            }
+          />
+          <Route
+            path="/todos"
+            element={
+              <AuthenticatedRoute>
+                <Todos />
+              </AuthenticatedRoute>
+            }
+          />
+          <Route
+            path="/logout"
+            element={
+              <AuthenticatedRoute>
+                <Logout />
+              </AuthenticatedRoute>
+            }
+          />
           <Route path="*" element={<Error />} />
         </Routes>
         <Footer />
