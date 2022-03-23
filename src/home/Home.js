@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 function Home(props) {
   return (
     <div>
-      Welcome to HOME Page {props.params.name}
-      <p>
-        You can manage your TODOS <Link to="/todos">here</Link>...
-      </p>
+      <h1>Welcome!</h1>
+      <div className="container">
+        Welcome {props.params.name}. You can manage your TODOS{" "}
+        <Link to="/todos">here</Link>.
+      </div>
     </div>
   );
 }
