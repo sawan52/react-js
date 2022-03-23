@@ -3,6 +3,10 @@ class AuthenticationService {
     console.log("successfulLogin");
     sessionStorage.setItem("AuthenticatedUser", username);
   }
+
+  logout() {
+    sessionStorage.removeItem("AuthenticatedUser");
+  }
 }
 
 export default new AuthenticationService();

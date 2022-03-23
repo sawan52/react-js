@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
+import AuthenticationService from "../service/AuthenticationService.js";
 
 function Header(props) {
   return (
@@ -30,7 +31,11 @@ function Header(props) {
             </Link>
           </li>
           <li>
-            <Link to="/logout" className="nav-link">
+            <Link
+              to="/logout"
+              className="nav-link"
+              onClick={AuthenticationService.logout}
+            >
               LogOut
             </Link>
           </li>
