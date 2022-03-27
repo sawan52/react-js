@@ -1,5 +1,5 @@
 import React from "react";
-import AuthenticationService from "../service/AuthenticationService";
+import AuthenticationService from "../auth/AuthenticationService";
 import { Navigate } from "react-router-dom";
 
 function AuthenticatedRoute(props) {

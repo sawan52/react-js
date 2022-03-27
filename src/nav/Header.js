@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
-import AuthenticationService from "../service/AuthenticationService.js";
+import AuthenticationService from "../auth/AuthenticationService.js";
 
 function Header(props) {
   const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
