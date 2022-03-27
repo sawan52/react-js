@@ -1,14 +1,26 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import HelloWebService from "../api/HelloWebService";
 
 class Home extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      msg: "",
+    };
     this.callWebService = this.callWebService.bind(this);
+    this.handleSuccessfullResponse = this.handleSuccessfullResponse.bind(this);
   }
 
   callWebService() {
-    console.log("webservice called");
+    HelloWebService.executedHelloService().then((response) =>
+      this.handleSuccessfullResponse(response)
+    );
+  }
+
+  handleSuccessfullResponse(response) {
+    this.setState({ msg: response.data });
   }
 
   render() {
@@ -24,6 +36,8 @@ class Home extends Component {
           <br />
           <button onClick={this.callWebService}>Magic</button>
         </div>
+        <br />
+        <div className="container">{this.state.msg}</div>
       </div>
     );
   }
