@@ -19,14 +19,18 @@ class Home extends Component {
     //   .then((response) => this.handleSuccessfullResponse(response))
     //   .catch((error) => this.handleFailedResponse());
 
-    HelloWebService.executedHelloBeanService()
+    // HelloWebService.executedHelloBeanService()
+    //   .then((response) => this.handleSuccessfullResponse(response))
+    //   .catch((error) => this.handleFailedResponse());
+
+    HelloWebService.executedHelloPathVariableService(this.props.params.name)
       .then((response) => this.handleSuccessfullResponse(response))
-      .catch((error) => this.handleFailedResponse());
+      .catch(() => this.handleFailedResponse());
   }
 
   handleSuccessfullResponse(response) {
     console.log(response);
-    this.setState({ msg: response.data.msg });
+    this.setState({ msg: response.data });
   }
 
   handleFailedResponse() {
