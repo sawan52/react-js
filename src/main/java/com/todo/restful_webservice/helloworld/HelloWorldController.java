@@ -1,4 +1,4 @@
-package com.todo.restful_webservice;
+package com.todo.restful_webservice.helloworld;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +21,7 @@ public class HelloWorldController {
 
     @GetMapping("/hello/{name}")
     public String helloPathVariable(@PathVariable String name) {
-//        return "Hello " + name;
-        throw new RuntimeException("Something went wrong!");
+        return "Hello " + name;
+//        throw new RuntimeException("Something went wrong!");
     }
 }
