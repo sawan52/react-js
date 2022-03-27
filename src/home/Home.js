@@ -25,7 +25,7 @@ class Home extends Component {
 
     HelloWebService.executedHelloPathVariableService(this.props.params.name)
       .then((response) => this.handleSuccessfullResponse(response))
-      .catch(() => this.handleFailedResponse());
+      .catch((error) => this.handleFailedResponse(error));
   }
 
   handleSuccessfullResponse(response) {
@@ -33,8 +33,9 @@ class Home extends Component {
     this.setState({ msg: response.data });
   }
 
-  handleFailedResponse() {
-    this.setState({ msg: "Something went wrong, please try again later." });
+  handleFailedResponse(error) {
+    console.log(error.response);
+    this.setState({ msg: error.response.data.message });
   }
 
   render() {
