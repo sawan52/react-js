@@ -11,16 +11,26 @@ class Home extends Component {
     };
     this.callWebService = this.callWebService.bind(this);
     this.handleSuccessfullResponse = this.handleSuccessfullResponse.bind(this);
+    this.handleFailedResponse = this.handleFailedResponse.bind(this);
   }
 
   callWebService() {
-    HelloWebService.executedHelloService().then((response) =>
-      this.handleSuccessfullResponse(response)
-    );
+    // HelloWebService.executedHelloService()
+    //   .then((response) => this.handleSuccessfullResponse(response))
+    //   .catch((error) => this.handleFailedResponse());
+
+    HelloWebService.executedHelloBeanService()
+      .then((response) => this.handleSuccessfullResponse(response))
+      .catch((error) => this.handleFailedResponse());
   }
 
   handleSuccessfullResponse(response) {
-    this.setState({ msg: response.data });
+    console.log(response);
+    this.setState({ msg: response.data.msg });
+  }
+
+  handleFailedResponse() {
+    this.setState({ msg: "Something went wrong, please try again later." });
   }
 
   render() {
