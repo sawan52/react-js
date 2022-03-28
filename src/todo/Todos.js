@@ -12,14 +12,20 @@ class Todos extends Component {
 
     this.deleteTodoService = this.deleteTodoService.bind(this);
     this.refreshTodos = this.refreshTodos.bind(this);
+    this.updateTodoService = this.updateTodoService.bind(this);
   }
 
   deleteTodoService(id) {
     let username = AuthenticationService.getLoggedInUsername();
     TodoDataService.deleteTodo(username, id).then((response) => {
-      this.setState({ message: `Todo with Id ${id} is deleted successfully` });
+      this.setState({ message: `Todo with Id ${id} is deleted successfully!` });
       this.refreshTodos();
     });
+  }
+
+  updateTodoService(id){
+    console.log("update ", id);
+    this.props.navigate(`/todos/${id}`)
   }
 
   componentDidMount() {
@@ -50,6 +56,7 @@ class Todos extends Component {
                 <th>Description</th>
                 <th>Target Date</th>
                 <th>Is Completed?</th>
+                <th>Update</th>
                 <th>Delete</th>
               </tr>
             </thead>
@@ -59,6 +66,13 @@ class Todos extends Component {
                   <td>{todo.description}</td>
                   <td>{todo.targetDate.toString()}</td>
                   <td>{todo.done.toString()}</td>
+                  <td>
+                    <button
+                      className="btn btn-success"
+                      onClick={() => this.updateTodoService(todo.id)}>
+                      Update
+                    </button>
+                  </td>
                   <td>
                     <button
                       className="btn btn-warning"
