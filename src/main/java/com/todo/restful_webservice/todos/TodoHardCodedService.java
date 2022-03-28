@@ -9,16 +9,32 @@ import java.util.List;
 @Service
 public class TodoHardCodedService {
 
-    private static List<Todo> todos = new ArrayList<>();
+    private static List<Todo> todosList = new ArrayList<>();
     private static int idCounter = 0;
 
     static {
-        todos.add(new Todo(++idCounter, "sawan52", "Learn Angular", new Date(), false));
-        todos.add(new Todo(++idCounter, "sawan52", "Learn DSA", new Date(), false));
-        todos.add(new Todo(++idCounter, "sawan52", "Learn React", new Date(), false));
+        todosList.add(new Todo(++idCounter, "sawan52", "Learn Angular", new Date(), false));
+        todosList.add(new Todo(++idCounter, "sawan52", "Learn DSA", new Date(), false));
+        todosList.add(new Todo(++idCounter, "sawan52", "Learn React", new Date(), false));
     }
 
     public List<Todo> findAll() {
-        return todos;
+        return todosList;
+    }
+
+    public Todo deleteById(long id) {
+        Todo todo = findById(id);
+        // If todo is not found...
+        if (todo == null) return null;
+        // If todo is removed successfully...
+        if (todosList.remove(todo)) return todo;
+        else return null;
+    }
+
+    private Todo findById(long id) {
+        for (Todo todo : todosList) {
+            if (todo.getId() == id) return todo;
+        }
+        return null;
     }
 }
