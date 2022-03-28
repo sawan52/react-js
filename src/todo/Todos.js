@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TodoDataService from "../api/TodoDataService";
 import AuthenticationService from "../auth/AuthenticationService";
+import moment from "moment";
 
 class Todos extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class Todos extends Component {
     this.deleteTodoService = this.deleteTodoService.bind(this);
     this.refreshTodos = this.refreshTodos.bind(this);
     this.updateTodoService = this.updateTodoService.bind(this);
+    this.addTodoService = this.addTodoService.bind(this);
   }
 
   deleteTodoService(id) {
@@ -24,8 +26,11 @@ class Todos extends Component {
   }
 
   updateTodoService(id){
-    console.log("update ", id);
     this.props.navigate(`/todos/${id}`)
+  }
+
+  addTodoService(){
+    this.props.navigate(`/todos/-1`)
   }
 
   componentDidMount() {
@@ -64,7 +69,7 @@ class Todos extends Component {
               {this.state.todos.map((todo) => (
                 <tr key={todo.id}>
                   <td>{todo.description}</td>
-                  <td>{todo.targetDate.toString()}</td>
+                  <td>{moment(todo.targetDate).format("YYYY-MM-DD")}</td>
                   <td>{todo.done.toString()}</td>
                   <td>
                     <button
@@ -84,6 +89,9 @@ class Todos extends Component {
               ))}
             </tbody>
           </table>
+          <div className="container">
+            <button className="btn btn-success" onClick={this.addTodoService}>Add</button>
+          </div>
         </div>
       </div>
     );
