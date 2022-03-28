@@ -49,7 +49,7 @@ class Home extends Component {
         <div className="container">
           Click below button to see magic!!
           <br />
-          <button onClick={this.callWebService}>Magic</button>
+          <button className="btn btn-primary"onClick={this.callWebService}>Magic</button>
         </div>
         <br />
         <div className="container">{this.state.msg}</div>
